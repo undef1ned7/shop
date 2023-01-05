@@ -1,0 +1,36 @@
+.product-right button{
+    color: orangered;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-top: 10px;
+ }
+ .product{
+     display: flex;
+     column-gap: 30px;
+     align-items: center;
+     margin-top: 50px;
+     position: relative;
+ }
+
+ .product-right p{
+     margin: 10px 0;
+
+ }
+ .product-img{
+     height: 400px;
+ }
+ .back{
+     position: absolute;
+     top: 0;
+     left: -50px;
+     font-size: 30px;
+     transition: .5s;
+     cursor: pointer;
+ }
+ .back:hover{
+     transform: scale(1.2);
+     color: red;
+ }

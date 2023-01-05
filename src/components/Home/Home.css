@@ -1,0 +1,41 @@
+.card-img{
+    height: 150px;
+
+}
+.card{
+padding: 30px;
+box-shadow: 0px 0px 50px 10px rgba(34, 60, 80, 0.2);
+margin-top: 15px;
+}
+.card__buttons{
+    display: flex;
+    column-gap: 10px;;
+}
+.card__buttons a{
+    color: black;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.card__buttons button{
+   color: orangered;
+   background-color: transparent;
+   border: none;
+   cursor: pointer;
+   font-weight: bold;
+   text-transform: uppercase;
+}
+.category{
+    position: fixed;
+    top: 70px;
+   
+}
+.category-btn{
+    padding: 8px 16px;
+    color: orangered;
+    border: 1px solid grey;
+    cursor: pointer;
+}
+.active{
+    background-color: orangered;
+    color: white;
+}

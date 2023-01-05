@@ -1,0 +1,20 @@
+header{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    background-color: orangered;
+    position: fixed;
+    width: 100%;
+    top:0;
+}
+.header__right{
+    display: flex;
+    column-gap: 10px;
+}
+.header__right a{
+    font-size: 25px;
+    color: white;
+}
+.logo{
+    color: white;
+}
