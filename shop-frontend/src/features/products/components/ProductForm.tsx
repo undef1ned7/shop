@@ -1,6 +1,6 @@
 import { Button, Grid, MenuItem, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { ProductMutation } from "../../../types";
+import { Product, ProductMutation } from "../../../types";
 import FileInput from "../../../components/UI/FileInput/FileInput";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { selectCategories } from "../../categories/categoriesSlice";
@@ -8,22 +8,35 @@ import { fetchCategories } from "../../categories/categoriesThunks";
 
 interface Props {
   onSubmit: (mutation: ProductMutation) => void;
+  initial?: Product | null;
 }
 
-const ProductForm: React.FC<Props> = ({ onSubmit }) => {
+const ProductForm: React.FC<Props> = ({ onSubmit, initial }) => {
   const dispatch = useAppDispatch();
   const categories = useAppSelector(selectCategories);
   const [state, setState] = useState<ProductMutation>({
-    category: "",
-    title: "",
-    price: "",
-    description: "",
+    category: initial?.category ? (typeof initial.category === "object" ? initial.category._id : initial.category) : "",
+    title: initial?.title ?? "",
+    price: initial?.price !== undefined ? String(initial.price) : "",
+    description: initial?.description ?? "",
     image: null,
   });
 
   useEffect(() => {
     dispatch(fetchCategories());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (initial) {
+      setState({
+        category: typeof initial.category === "object" ? initial.category._id : (initial as any).category,
+        title: initial.title,
+        price: String(initial.price),
+        description: initial.description ?? "",
+        image: null,
+      });
+    }
+  }, [initial]);
 
   const submitFormHandler = (e: React.FormEvent) => {
     e.preventDefault();
@@ -107,7 +120,7 @@ const ProductForm: React.FC<Props> = ({ onSubmit }) => {
         </Grid>
         <Grid item xs>
           <Button type="submit" color="primary" variant="contained">
-            Create
+            {initial ? "Update" : "Create"}
           </Button>
         </Grid>
       </Grid>

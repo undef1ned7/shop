@@ -1,0 +1,20 @@
+FROM node:18-alpine
+
+# иногда Vite на alpine просит это
+RUN apk add --no-cache libc6-compat
+
+WORKDIR /opt/service/apiShop-frontend
+
+# сначала только package.json, чтобы кэшировалось
+COPY package.json package-lock.json* ./
+
+RUN npm install
+
+# теперь уже весь проект
+COPY . .
+
+# контейнер будет слушать этот порт
+EXPOSE 3000
+
+# по умолчанию будет стартовать этот скрипт
+CMD ["npm", "start"]

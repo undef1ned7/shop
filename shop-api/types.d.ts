@@ -4,6 +4,5 @@ export interface ProductMutation {
   description: string;
   price: number;
   image: string | null;
+  user: string;
 }
-
-// export type ProductWithoutId = Omit<Product, "id">;

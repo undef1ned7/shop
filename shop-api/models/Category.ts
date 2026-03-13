@@ -8,6 +8,11 @@ const CategorySchema = new Schema({
     unique: true,
   },
   description: String,
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
 });
 
 const Category = mongoose.model("Category", CategorySchema);

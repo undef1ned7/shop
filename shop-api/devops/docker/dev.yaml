@@ -1,0 +1,35 @@
+services:
+  backend:
+    container_name: shopapi_backend
+    build:
+      context: ../../
+      dockerfile: devops/Dockerfile.backend
+    command: "npm run dev"
+    environment:
+      - MONGODB_URI=mongodb://mongodb:27017/shop?directConnection=true
+    depends_on:
+      - mongodb
+    ports:
+      - "8000:8000"
+    volumes:
+      - ../../public:/opt/service/apiShop-backend/public
+
+  mongodb:
+    image: mongo:noble
+    container_name: shopapi_mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - ../../data:/data/db
+
+  frontend:
+    container_name: shopapi_frontend
+    build:
+      context: ../../../shop-frontend
+      dockerfile: devops/Dockerfile.frontend
+    ports:
+      - "3000:3000"
+    command: "npm start"
+    depends_on:
+      - backend
+      - mongodb

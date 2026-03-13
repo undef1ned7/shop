@@ -1,0 +1,9 @@
+FROM node:alpine3.21
+
+WORKDIR /opt/service/apiShop-backend
+
+COPY package.json .
+
+RUN npm i
+
+COPY . .
